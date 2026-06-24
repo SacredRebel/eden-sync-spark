@@ -1,4 +1,16 @@
 import type { Project } from "@/types/project"
+import yardBefore from "@/assets/yard-before.jpg.asset.json"
+import yardAfter from "@/assets/yard-after.jpg.asset.json"
+import treeBefore from "@/assets/tree-before.jpg.asset.json"
+import treeAfter from "@/assets/tree-after.jpg.asset.json"
+import bedsBefore from "@/assets/beds-before.jpg.asset.json"
+import bedsAfter from "@/assets/beds-after.jpg.asset.json"
+import soilBefore from "@/assets/soil-before.jpg.asset.json"
+import soilAfter from "@/assets/soil-after.jpg.asset.json"
+import waterBefore from "@/assets/water-before.jpg.asset.json"
+import waterAfter from "@/assets/water-after.jpg.asset.json"
+import cornerBefore from "@/assets/corner-before.jpg.asset.json"
+import cornerAfter from "@/assets/corner-after.jpg.asset.json"
 
 export const projects: Project[] = [
   {
@@ -18,8 +30,8 @@ export const projects: Project[] = [
     techniques: ["Weed removal", "Shrub trimming", "Debris cleanup", "Mulch refresh"],
     results: ["Cleaner yard", "Usable pathways", "Reduced visual clutter", "Ready for regular maintenance"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before photo slot for overgrown yard cleanup", caption: "Before photo placeholder: upload the overgrown yard image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After photo slot for overgrown yard cleanup", caption: "After photo placeholder: upload the cleaned yard image here." },
+      { src: yardBefore.url, alt: "Overgrown backyard with weeds, branches, and leaf litter before cleanup", caption: "Before: overgrown yard with debris, weeds, and unused space." },
+      { src: yardAfter.url, alt: "Tidy backyard with trimmed shrubs, mulched beds, and clear stepping-stone path after cleanup", caption: "After: cleaned yard with mulch, shaped shrubs, and clear pathways." },
     ],
     steps: [
       { title: "Assess", description: "Walk the space, identify cleanup priorities, and plan disposal or green waste handling.", duration: "Quick review", images: [] },
@@ -45,8 +57,8 @@ export const projects: Project[] = [
     techniques: ["Seasonal pruning", "Tree basin cleanup", "Compost application", "Mulching"],
     results: ["Cleaner tree shape", "Protected soil", "Reduced weeds", "Better seasonal care foundation"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before fruit tree care photo slot", caption: "Before photo placeholder: upload the unpruned tree image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After fruit tree care photo slot", caption: "After photo placeholder: upload the pruned and mulched tree image here." },
+      { src: treeBefore.url, alt: "Unpruned fruit tree with tangled branches and weedy base", caption: "Before: overgrown fruit tree with crossing branches and dry basin." },
+      { src: treeAfter.url, alt: "Pruned fruit tree with shaped canopy, mulched basin, and healthy fruit", caption: "After: cleanly pruned tree with mulched basin and healthier shape." },
     ],
     steps: [
       { title: "Tree Review", description: "Look at tree structure, deadwood, crossing branches, and root-zone conditions.", duration: "Quick review", images: [] },
@@ -72,8 +84,8 @@ export const projects: Project[] = [
     techniques: ["Bed layout", "Soil filling", "Compost blending", "Edible planting setup"],
     results: ["Ready-to-grow beds", "Organized garden layout", "Improved soil volume", "Easy planting access"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before garden bed setup photo slot", caption: "Before photo placeholder: upload the empty garden area image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After garden bed setup photo slot", caption: "After photo placeholder: upload the finished raised bed image here." },
+      { src: bedsBefore.url, alt: "Empty bare backyard area before raised garden bed installation", caption: "Before: unused backyard patch with bare soil and weeds." },
+      { src: bedsAfter.url, alt: "Wooden raised garden beds filled with soil, herbs, and vegetable seedlings", caption: "After: raised beds installed with rich soil, herbs, and starter veggies." },
     ],
     steps: [
       { title: "Layout", description: "Choose bed location, access paths, sun exposure, and practical garden flow.", duration: "Planning", images: [] },
@@ -99,8 +111,8 @@ export const projects: Project[] = [
     techniques: ["Compost topdressing", "Sheet mulching", "Soil amendment application", "Moisture retention support"],
     results: ["Covered soil", "Improved organic matter", "Better moisture retention", "Healthier planting foundation"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before soil refresh photo slot", caption: "Before photo placeholder: upload tired soil or bare bed image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After soil refresh photo slot", caption: "After photo placeholder: upload composted and mulched area image here." },
+      { src: soilBefore.url, alt: "Dry cracked depleted soil with struggling seedling", caption: "Before: dry, cracked soil with little organic matter." },
+      { src: soilAfter.url, alt: "Rich dark compost and wood chip mulch with healthy young plants", caption: "After: composted, mulched bed retaining moisture and feeding plants." },
     ],
     steps: [
       { title: "Prepare", description: "Clear weeds and identify where compost, mulch, or amendments are most useful.", duration: "Quick review", images: [] },
@@ -126,8 +138,8 @@ export const projects: Project[] = [
     techniques: ["Low-water plant layout", "Basic irrigation setup", "Leak checks", "Mulching"],
     results: ["Lower-water planting", "Simpler watering", "Protected plant roots", "Cleaner landscape bed"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before water-smart planting photo slot", caption: "Before photo placeholder: upload dry or unused bed image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After water-smart planting photo slot", caption: "After photo placeholder: upload low-water planting image here." },
+      { src: waterBefore.url, alt: "Dry sunny bed with sparse stressed plants before water-smart upgrade", caption: "Before: water-stressed bed with bare soil and struggling plants." },
+      { src: waterAfter.url, alt: "Drought-tolerant landscape with lavender, succulents, grasses, and drip line", caption: "After: low-water planting with drip irrigation and heavy mulch." },
     ],
     steps: [
       { title: "Water Review", description: "Check sun exposure, plant needs, and existing watering setup.", duration: "Planning", images: [] },
@@ -153,8 +165,8 @@ export const projects: Project[] = [
     techniques: ["Small-space layout", "Path or border building", "Natural feature placement", "Planting accents"],
     results: ["More usable corner", "Peaceful outdoor feel", "Natural garden structure", "Simple place to sit or pause"],
     images: [
-      { src: "/placeholder.svg?height=600&width=800", alt: "Before natural garden corner photo slot", caption: "Before photo placeholder: upload unused corner image here." },
-      { src: "/placeholder.svg?height=600&width=800", alt: "After natural garden corner photo slot", caption: "After photo placeholder: upload finished sitting or garden corner image here." },
+      { src: cornerBefore.url, alt: "Neglected unused backyard corner with weeds and bare dirt", caption: "Before: forgotten corner with weeds and no purpose." },
+      { src: cornerAfter.url, alt: "Cozy garden corner with stone path, wooden bench, and lush planting", caption: "After: peaceful sitting nook with stone path, bench, and natural planting." },
     ],
     steps: [
       { title: "Choose the Corner", description: "Pick the right spot and decide how the space should feel and function.", duration: "Planning", images: [] },
