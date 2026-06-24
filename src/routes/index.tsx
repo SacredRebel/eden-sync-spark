@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation"
 import PortfolioGrid from "@/components/portfolio-grid"
 import ServiceGrid from "@/components/service-grid"
 import { contact, edenDifference, services, signatureProjects } from "@/data/services"
+import heroAsset from "@/assets/hero.jpg.asset.json"
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,7 +46,10 @@ function EdenLocalServices() {
   return (
     <div className="min-h-screen scroll-smooth bg-[#f6f0e2] pb-24 text-[#2f2f25] md:pb-0">
       <header className="relative isolate overflow-hidden bg-[#203f24] text-white">
-        <div className="absolute inset-0 -z-20 bg-[url('/placeholder.jpg')] bg-cover bg-center" />
+        <div
+          className="absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroAsset.url})` }}
+        />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#17331d]/90 via-[#244d2b]/88 to-[#f6f0e2]" />
 
         <div className="mx-auto max-w-7xl px-4 py-4 md:py-6">

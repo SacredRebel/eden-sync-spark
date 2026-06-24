@@ -1,4 +1,10 @@
 import { Droplets, Flame, Flower2, Hammer, Heart, Leaf, Mountain, Scissors, Sprout, Trees, Waves } from "lucide-react"
+import foodForest from "@/assets/food-forest.jpg.asset.json"
+import sacred from "@/assets/sacred.jpg.asset.json"
+import creativeLand from "@/assets/creative-land.jpg.asset.json"
+import outdoorLiving from "@/assets/outdoor-living.jpg.asset.json"
+import regenerative from "@/assets/regenerative.jpg.asset.json"
+import livingStructures from "@/assets/living-structures.jpg.asset.json"
 
 export const contact = {
   phoneLabel: "Call Eden Local Services",
@@ -81,42 +87,42 @@ export const edenDifference = [
     icon: Trees,
     title: "Food Forests & Edible Landscapes",
     description: "Transform your property into a productive ecosystem using fruit trees, herbs, berries, pollinator plants, and edible landscaping.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: foodForest.url,
   },
   {
     id: "sacred-meditation-spaces",
     icon: Heart,
     title: "Sacred & Meditation Spaces",
     description: "Create peaceful outdoor spaces for reflection, meditation, gathering, and connection with nature.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: sacred.url,
   },
   {
     id: "creative-land-design",
     icon: Mountain,
     title: "Creative Land Design",
     description: "Custom property transformation projects designed around the natural character of the land.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: creativeLand.url,
   },
   {
     id: "outdoor-living-areas",
     icon: Flame,
     title: "Outdoor Living Areas",
     description: "Create beautiful outdoor spaces for family, friends, gatherings, exercise, relaxation, and everyday life.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: outdoorLiving.url,
   },
   {
     id: "regenerative-systems",
     icon: Waves,
     title: "Regenerative Systems",
     description: "Build healthier landscapes using ecological design principles, soil regeneration, compost systems, and water-aware planning.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: regenerative.url,
   },
   {
     id: "living-structures-growing-walls",
     icon: Leaf,
     title: "Living Structures & Growing Walls",
     description: "Creative living infrastructure built from plants and natural materials, including living fences, trellises, edible barriers, and vertical gardens.",
-    image: "/placeholder.svg?height=420&width=640",
+    image: livingStructures.url,
   },
 ]
 
