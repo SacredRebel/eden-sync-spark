@@ -1,42 +1,48 @@
+# Placeholder Image Audit
 
-## Goal
+I scanned every reference to `/placeholder.svg` and `/placeholder.jpg` in the project. Here's exactly how many real images you need and where each one goes.
 
-Get the `edenverse-local` codebase into this Lovable project via GitHub two-way sync, then work on it from here.
+## Total: 19 images needed
 
-## Important constraint
+| # | Location | Count | Purpose | Suggested size |
+|---|---|---|---|---|
+| 1 | Home hero background (`src/routes/index.tsx`) | **1** | Full-width hero behind the headline | 1920×1080 (landscape) |
+| 2 | "Eden Difference" cards (`src/data/services.ts` → `edenDifference`) | **6** | One image per differentiator card | 640×420 (landscape) |
+| 3 | Project before/after pairs (`src/data/projects.ts`) | **12** | 6 projects × (before + after) | 800×600 (landscape) |
 
-Lovable does **not** support importing an existing GitHub repository directly into a project. The GitHub integration only creates a *new* repo from the current Lovable project and syncs both ways from that point. So we can't point this project at `SacredRebel/edenverse-local` and have it pull the existing code.
+### Breakdown of the 6 project pairs (before + after each)
 
-## Recommended path
+1. Overgrown Yard Cleanup
+2. Fruit Tree Pruning & Mulching
+3. Raised Garden Bed Setup
+4. Soil & Compost Refresh
+5. Water-Smart Planting Area
+6. Natural Garden Corner
 
-1. **You connect this project to GitHub** (I can't trigger this — it's a UI action):
-   - Bottom-left **+** menu in the chat → **GitHub** → **Connect project**
-   - Authorize the Lovable GitHub App
-   - Choose the account/org and click **Create Repository**
-   - This creates a fresh repo (e.g. `lovable-<projectname>`) seeded with the current empty Lovable starter.
+## What's NOT in the count (no images today, optional later)
 
-2. **Merge edenverse-local into that new repo locally**, then push. From your machine:
-   ```bash
-   git clone <new-lovable-repo-url> lovable-eden
-   cd lovable-eden
-   git remote add eden https://github.com/SacredRebel/edenverse-local.git
-   git fetch eden
-   git merge eden/main --allow-unrelated-histories
-   # resolve any conflicts (mainly package.json, vite config, src/routes vs src/pages)
-   git push origin main
-   ```
-   Within ~30s the code syncs into this Lovable project and the preview rebuilds.
+- **Signature Projects** section (`signatureProjects` in `services.ts`) — currently text-only cards. Add images only if you want thumbnails (+3).
+- **Project timeline steps** — each step has an empty `images: []` array. Optional process photos (up to 3 per project × 6 = 18 more if you want fully illustrated process timelines).
+- **Service grid** — uses Lucide icons, no photos needed.
+- **Form/input `placeholder=` attributes** — those are HTML text placeholders, not images.
 
-3. **I scan the repo here** once it lands: read `package.json`, routing structure, components, and report what's in it plus any incompatibilities with Lovable's stack (TanStack Start v1 + Vite 7 + Tailwind v4). Likely friction points if the repo uses a different stack (Next.js, CRA, React Router, Tailwind v3, etc.) — I'll list them and propose a migration plan.
+## Replacement plan (when you're ready to build)
 
-## Alternative if step 2 sounds heavy
+1. **You provide images** in any of three ways:
+   - Upload real photos (drag into chat) — best for authenticity
+   - Ask me to AI-generate them (I'll match the green/cream Eden palette)
+   - Mix: real photos where you have them, AI for the rest
+2. **I upload each to the Lovable CDN** via `lovable-assets` so they don't bloat the repo, and write `.asset.json` pointers under `src/assets/`.
+3. **I wire them in:**
+   - Hero: swap the `bg-[url('/placeholder.jpg')]` in `index.tsx`
+   - Eden Difference: replace the 6 `image:` strings in `services.ts`
+   - Projects: replace the 12 `src:` strings in `projects.ts` (and update `alt` + `caption` from "placeholder" text to real descriptions)
+4. **Keep `/placeholder.svg`** as a fallback — the `|| "/placeholder.svg"` guards in the components are good to leave alone.
 
-I can fetch the public repo's files directly and copy them in here (no git history, no two-way sync with your existing repo). Say the word and I'll switch to that.
+## Recommended first batch (if you want to start small)
 
-## On "scanning the database"
+The 1 hero + 6 Eden Difference cards = **7 images** covers the entire landing page above the portfolio. Project before/afters can come next as a separate batch (ideally real photos of your work).
 
-You confirmed the project is frontend-only, so there's nothing to scan DB-side. If a backend gets added later we'd enable Lovable Cloud and I can introspect tables/policies then.
+---
 
-## Next step from you
-
-Either: (a) connect GitHub via the + menu and tell me when the merge+push is done, or (b) tell me to just copy the repo files in directly.
+**Tell me which route you want:** real uploads, AI-generated, or a mix — and whether to start with the 7 landing-page images or do all 19 in one go.
