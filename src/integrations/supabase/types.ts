@@ -14,16 +14,144 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      submission_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          role: string
+          submission_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+          submission_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submission_messages_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      submissions: {
+        Row: {
+          address: string | null
+          admin_notes: string | null
+          ai_estimate_high: number | null
+          ai_estimate_low: number | null
+          ai_summary: string | null
+          budget_range: string | null
+          created_at: string
+          email: string
+          id: string
+          media: Json
+          name: string
+          phone: string | null
+          project_type: string | null
+          status: Database["public"]["Enums"]["submission_status"]
+          timeline: string | null
+          transcripts: Json
+          updated_at: string
+          vision: string | null
+        }
+        Insert: {
+          address?: string | null
+          admin_notes?: string | null
+          ai_estimate_high?: number | null
+          ai_estimate_low?: number | null
+          ai_summary?: string | null
+          budget_range?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          media?: Json
+          name: string
+          phone?: string | null
+          project_type?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          timeline?: string | null
+          transcripts?: Json
+          updated_at?: string
+          vision?: string | null
+        }
+        Update: {
+          address?: string | null
+          admin_notes?: string | null
+          ai_estimate_high?: number | null
+          ai_estimate_low?: number | null
+          ai_summary?: string | null
+          budget_range?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          media?: Json
+          name?: string
+          phone?: string | null
+          project_type?: string | null
+          status?: Database["public"]["Enums"]["submission_status"]
+          timeline?: string | null
+          transcripts?: Json
+          updated_at?: string
+          vision?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      submission_status:
+        | "new"
+        | "reviewing"
+        | "quoted"
+        | "won"
+        | "lost"
+        | "ready_to_book"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +278,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      submission_status: [
+        "new",
+        "reviewing",
+        "quoted",
+        "won",
+        "lost",
+        "ready_to_book",
+      ],
+    },
   },
 } as const
