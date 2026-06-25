@@ -1,48 +1,65 @@
-# Placeholder Image Audit
+# Free Quote Intake + AI Assistant + Admin Dashboard
 
-I scanned every reference to `/placeholder.svg` and `/placeholder.jpg` in the project. Here's exactly how many real images you need and where each one goes.
+A hybrid intake flow on the public site, an optional AI assistant that reviews the submission, and a login-protected admin dashboard to review every lead.
 
-## Total: 19 images needed
+## 1. Public intake flow (`/quote`)
 
-| # | Location | Count | Purpose | Suggested size |
-|---|---|---|---|---|
-| 1 | Home hero background (`src/routes/index.tsx`) | **1** | Full-width hero behind the headline | 1920×1080 (landscape) |
-| 2 | "Eden Difference" cards (`src/data/services.ts` → `edenDifference`) | **6** | One image per differentiator card | 640×420 (landscape) |
-| 3 | Project before/after pairs (`src/data/projects.ts`) | **12** | 6 projects × (before + after) | 800×600 (landscape) |
+A single-page wizard, simple and visual:
 
-### Breakdown of the 6 project pairs (before + after each)
+1. **Project vision** — short text + budget range + timeline + project type (food forest, outdoor living, etc.).
+2. **Show me your space** — drag/drop or tap to upload images & videos (multi-file).
+3. **Talk to me** — one-tap voice recorder (records to webm/mp4) OR short video recorder using `MediaRecorder`. Optional, can skip.
+4. **Contact** — name, email, phone, address.
+5. **Review & submit** — preview everything, then submit.
 
-1. Overgrown Yard Cleanup
-2. Fruit Tree Pruning & Mulching
-3. Raised Garden Bed Setup
-4. Soil & Compost Refresh
-5. Water-Smart Planting Area
-6. Natural Garden Corner
+After submit:
+- Files upload to Lovable Cloud Storage (`submissions` bucket, private).
+- A `submissions` row is created with all text + file references.
+- Voice/video recordings are auto-transcribed via Lovable AI speech-to-text.
+- Client lands on a thank-you screen with the option to **"Chat with our AI assistant about your project"**.
 
-## What's NOT in the count (no images today, optional later)
+## 2. AI assistant (optional, after submit)
 
-- **Signature Projects** section (`signatureProjects` in `services.ts`) — currently text-only cards. Add images only if you want thumbnails (+3).
-- **Project timeline steps** — each step has an empty `images: []` array. Optional process photos (up to 3 per project × 6 = 18 more if you want fully illustrated process timelines).
-- **Service grid** — uses Lucide icons, no photos needed.
-- **Form/input `placeholder=` attributes** — those are HTML text placeholders, not images.
+Chat panel on the thank-you screen powered by Lovable AI (`google/gemini-3-flash-preview`):
+- Receives the full submission (text + transcripts + image descriptions) as context.
+- Asks 2–4 smart follow-up questions, suggests design ideas, and produces a **rough estimate range** with reasoning.
+- The whole conversation is appended to the submission record.
+- A "Looks great — I want to move forward" button marks the lead as `ready_to_book` so it surfaces in the dashboard.
 
-## Replacement plan (when you're ready to build)
+## 3. Admin dashboard (`/admin`)
 
-1. **You provide images** in any of three ways:
-   - Upload real photos (drag into chat) — best for authenticity
-   - Ask me to AI-generate them (I'll match the green/cream Eden palette)
-   - Mix: real photos where you have them, AI for the rest
-2. **I upload each to the Lovable CDN** via `lovable-assets` so they don't bloat the repo, and write `.asset.json` pointers under `src/assets/`.
-3. **I wire them in:**
-   - Hero: swap the `bg-[url('/placeholder.jpg')]` in `index.tsx`
-   - Eden Difference: replace the 6 `image:` strings in `services.ts`
-   - Projects: replace the 12 `src:` strings in `projects.ts` (and update `alt` + `caption` from "placeholder" text to real descriptions)
-4. **Keep `/placeholder.svg`** as a fallback — the `|| "/placeholder.svg"` guards in the components are good to leave alone.
+Login-protected (email + Google). Only users with `admin` role see it.
 
-## Recommended first batch (if you want to start small)
+- **Leads list**: status, name, project type, budget, created date, AI estimate.
+- **Lead detail**: contact, project text, image gallery, video/audio players, transcripts, AI chat transcript, AI-suggested estimate.
+- **Actions**: change status (new → contacted → quoted → won/lost), add internal notes, download all assets as a zip.
 
-The 1 hero + 6 Eden Difference cards = **7 images** covers the entire landing page above the portfolio. Project before/afters can come next as a separate batch (ideally real photos of your work).
+## 4. GitHub mirror (optional)
+
+When a submission is created, a server function pushes a summary `.md` file + media links to a configured GitHub repo (`SUBMISSIONS_REPO`, `GITHUB_TOKEN`). Best-effort — failures are logged, never block the user.
+
+## 5. Site integration
+
+- Sticky **"Get a free quote"** floating action button bottom-right on every page → opens the wizard.
+- New `/quote` route for the full-screen experience.
+- Navigation link added.
 
 ---
 
-**Tell me which route you want:** real uploads, AI-generated, or a mix — and whether to start with the 7 landing-page images or do all 19 in one go.
+## Technical notes (for me)
+
+- **Stack**: TanStack Start + Lovable Cloud (Supabase) + Lovable AI Gateway.
+- **DB tables**: `submissions`, `submission_messages` (AI chat), `submission_status_history`, `user_roles` (`admin` enum), plus `has_role()` security-definer function.
+- **Storage bucket**: `submissions` (private), path `submissions/<submission_id>/<filename>`.
+- **Server fns**: `createSubmission`, `getSubmission`, `listSubmissions` (admin), `transcribeRecording`, `chatWithAssistant`, `updateSubmissionStatus`, `pushSubmissionToGithub`.
+- **STT**: `openai/gpt-4o-mini-transcribe` via Lovable AI.
+- **Auth**: email/password + Google. Admin role assigned via SQL after the first admin signs up.
+- **Build order**:
+  1. Enable Cloud, schema + roles + storage + auth + admin layout
+  2. Public wizard + file upload + submission create
+  3. Transcription server fn + AI chat assistant
+  4. Admin dashboard (list + detail + status)
+  5. Floating CTA + nav link
+  6. GitHub mirror (last — needs your repo + token)
+
+I'll skip the GitHub mirror in the first pass and ask you for repo name + token at the end. Sound good? Approve and I'll start building.
