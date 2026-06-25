@@ -262,8 +262,10 @@ export const updateSubmissionStatus = createServerFn({ method: "POST" })
       _role: "admin",
     });
     if (!isAdmin) throw new Error("Forbidden");
-    const patch: Record<string, unknown> = { status: data.status };
-    if (data.notes !== undefined) patch.admin_notes = data.notes;
+    const patch =
+      data.notes !== undefined
+        ? { status: data.status, admin_notes: data.notes }
+        : { status: data.status };
     const { error } = await context.supabase.from("submissions").update(patch).eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
