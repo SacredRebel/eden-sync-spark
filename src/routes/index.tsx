@@ -314,6 +314,9 @@ function EdenLocalServices() {
 
       <footer className="bg-[#244d2b] px-4 py-8 text-center text-white">
         <p>© Eden Local Services — local landscaping, orchard care, garden support, and property maintenance.</p>
+        <p className="mt-2 text-xs text-white/50">
+          <a href="/auth" className="hover:text-white/80 hover:underline">Staff sign in</a>
+        </p>
       </footer>
     </div>
   )
