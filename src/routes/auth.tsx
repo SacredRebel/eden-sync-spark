@@ -29,7 +29,8 @@ function AuthPage() {
   async function submit() {
     setBusy(true);
     try {
-      const email = username.includes("@") ? username : `${username.trim().toLowerCase()}@eden.local`;
+      const normalizedUsername = username.trim().toLowerCase();
+      const email = normalizedUsername.includes("@") ? normalizedUsername : `${normalizedUsername}@eden.local`;
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
       toast.success("Welcome back");
