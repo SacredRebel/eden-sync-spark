@@ -83,10 +83,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Creative landscape design, orchard care, outdoor living spaces, food forests, and regenerative property transformation throughout Ojai and surrounding communities." },
       { name: "author", content: "Eden Local Services" },
       { property: "og:title", content: "Eden Local Services | Creative Landscape Design & Land Stewardship" },
-      { property: "og:description", content: "Creative landscape design, orchard care, outdoor living spaces, food forests, and regenerative property transformation." },
+      { property: "og:description", content: "Creative landscape design, orchard care, outdoor living spaces, food forests, and regenerative property transformation throughout Ojai and surrounding communities." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Eden Local Services | Creative Landscape Design & Land Stewardship" },
+      { name: "twitter:description", content: "Creative landscape design, orchard care, outdoor living spaces, food forests, and regenerative property transformation throughout Ojai and surrounding communities." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/be57d7de-38c5-41a9-8034-59876e311b42" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/be57d7de-38c5-41a9-8034-59876e311b42" },
     ],
     links: [
       {
